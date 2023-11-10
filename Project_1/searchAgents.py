@@ -594,6 +594,20 @@ def foodHeuristic(state, problem):
     return maximum + foodCount
 '''
     
+class DFSFoodSearchAgent(SearchAgent):
+    "A SearchAgent for FoodSearchProblem using DFS"
+
+    def __init__(self):
+        self.searchFunction = lambda prob: search.depthFirstSearch(prob)
+        self.searchType = FoodSearchProblem
+
+
+class BFSFoodSearchAgent(SearchAgent):
+    "A SearchAgent for FoodSearchProblem using DFS"
+
+    def __init__(self):
+        self.searchFunction = lambda prob: search.breadthFirstSearch(prob)
+        self.searchType = FoodSearchProblem
 
 
 class ClosestDotSearchAgent(SearchAgent):
