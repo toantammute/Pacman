@@ -1,95 +1,61 @@
 import tkinter as tk
-from PIL import ImageTk, Image
 import subprocess
-import random
-'''
-def run_pacman_AStar():
-    command = "python pacman.py -l mediumScaryMaze -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic"
-    subprocess.run(command, shell=True)
-def run_pacman_BFS():
-    command = "python pacman.py -l mediumScaryMaze -p SearchAgent -a fn=bfs"
-    subprocess.run(command, shell=True)
-def run_pacman_DFS():
-    command = "python pacman.py -l mediumScaryMaze -p SearchAgent -a fn=dfs"
-    subprocess.run(command, shell=True)
-def play():
-    command = "python pacman.py"
-    subprocess.run(command, shell=True)
-# Tạo cửa sổ giao diện
-window = tk.Tk()
-font_game = ("Arcade", 20, "bold")
-# Tạo hình ảnh background
-background_image = Image.open("images/background.jpeg")
-background_photo = ImageTk.PhotoImage(background_image)
-screen_width = window.winfo_screenwidth()
-screen_height = window.winfo_screenheight()
-background_image = background_image.resize((screen_width, screen_height))
-# Hiển thị hình ảnh background
-background_label = tk.Label(window, image=background_photo)
-background_label.pack()
-# Tạo nút A*
-button = tk.Button(window, text="Play", command=play, font=font_game)
-button.pack()
-button = tk.Button(window, text="A*", command=run_pacman_AStar)
-button.pack()
-button = tk.Button(window, text="BFS", command=run_pacman_BFS)
-button.pack()
-button = tk.Button(window, text="DFS", command=run_pacman_DFS)
-button.pack()
+import level_select_human
+import level_select_AI
+from PIL import Image, ImageTk, ImageFont
+import pyglet, os
 
-# Chạy vòng lặp giao diện
-window.mainloop()
-'''
-def generateRandomMap(width, height):
-    # Tạo 1 map hcn rỗng bên trong
-    map = [['%' for _ in range(width)] for _ in range(height)]
-    for i in range(1, height - 1):
-        for j in range(1, width - 1):
-            map[i][j] = ' '
-    # end
-    # gắn vị trí mặc định của P
-    map[1][1] = 'P'
-    # random các phần tử bên trong
-    count_G = 2;
-    count_walls = 250;
-    count_dot = 5;
-    for i in range(0, count_G):
-        row = random.randint(2, 17)
-        col = random.randint(2, 37)
-        if (map[row][col] == 'G'): i = i-1
-        else: map[row][col] = 'G'
-    for i in range(0, count_walls):
-        row = random.randint(2, 17)
-        col = random.randint(2, 37)
-        if(map[row][col] != 'G'): map[row][col] = '%'
-    for i in range(0, count_dot):
-        row = random.randint(2, 17)
-        col = random.randint(2, 37)
-        if(map[row][col] != 'G'): map[row][col] = '.'
-    with open('layouts/random.lay', 'w') as f:
-        for row in map:
-            f.write(''.join(row) + '\n')
-    # Return the map
-    return map
-map = generateRandomMap(38, 18)
+def start_player_game():
+    # Hành động khi nhấn nút "Người chơi"
+    level_select_human.open_level_selection()
+def start_ai_game():
+    # Hành động khi nhấn nút "Máy chơi"
+    level_select_AI.open_level_selection()
+def exit_game():
+    # Hành động khi nhấn nút "Exit"
+    print("Thoát trò chơi")
+    root.destroy()
 
-'''
-def read_layout(filename):
-    with open(filename, 'r') as f:
-        layout = []
-        for line in f:
-            layout.append([c for c in line])
-    return layout
+root = tk.Tk()
+root.title("PACMAN GAME")
 
-def count_percentage(layout):
-    count = 0
-    for row in layout:
-        for c in row:
-            if c == '%':
-                count += 1
-    return count
+Font_tuple = ("PacFont", 20, "bold")
+# Tạo một đối tượng PhotoImage từ file GIF
+#gif = ImageTk.PhotoImage(Image.open("images/giphy.gif"))
 
-layout = read_layout('layouts/random.lay')
-count = count_percentage(layout)
-print(count)
-'''
+# Đặt đối tượng PhotoImage làm background cho root
+background_label = tk.Label(root)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+# Tạo khung
+frame = tk.Frame(root, borderwidth=1, relief="solid")
+frame.pack(anchor="nw")
+
+# Tạo nhãn thành viên
+member_label1 = tk.Label(frame, text="MEMBERS :")
+member_label1.pack(anchor="nw")
+member_label2 = tk.Label(frame, text="Pham Hoang Anh - 21110753")
+member_label2.pack(anchor="nw")
+member_label3 = tk.Label(frame, text="Dang Hieu Anh - 21110751")
+member_label3.pack(anchor="nw")
+member_label4 = tk.Label(frame, text="Le Nguyen Toan Tam - 21110797")
+member_label4.pack(anchor="nw")
+# Tạo các nút và đặt chúng trong giao diện
+# Set the size of the buttons
+button_width = 40
+button_height = 3
+
+# Create the buttons
+player_button = tk.Button(root, text="HUMAN PLAY",bg='blue', command=start_player_game, font=Font_tuple, width=button_width, height=button_height)
+ai_button = tk.Button(root, text="AI PLAY", command=start_ai_game, font=Font_tuple, width=button_width, height=button_height)
+exit_button = tk.Button(root, text="Exit", command=exit_game, font=Font_tuple, width=button_width, height=button_height)
+
+
+
+# Pack the buttons
+player_button.pack()
+ai_button.pack()
+exit_button.pack()
+
+
+
+root.mainloop()
