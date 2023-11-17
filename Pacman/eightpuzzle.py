@@ -202,11 +202,6 @@ class EightPuzzleSearchProblem(search.SearchProblem):
         return state.isGoal()
 
     def getSuccessors(self,state):
-        """
-          Returns list of (successor, action, stepCost) pairs where
-          each succesor is either left, right, up, or down
-          from the original state and the cost is 1.0 for each
-        """
         succ = []
         for a in state.legalMoves():
             succ.append((state.result(a), a, 1))

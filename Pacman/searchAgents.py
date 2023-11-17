@@ -568,12 +568,15 @@ class DFSFoodSearchAgent(SearchAgent):
 
 
 class BFSFoodSearchAgent(SearchAgent):
-    "A SearchAgent for FoodSearchProblem using DFS"
-
     def __init__(self):
         self.searchFunction = lambda prob: search.breadthFirstSearch(prob)
         self.searchType = FoodSearchProblem
+class UCSFoodSearchAgent(SearchAgent):
+    "A SearchAgent for FoodSearchProblem using DFS"
 
+    def __init__(self):
+        self.searchFunction = lambda prob: search.uniformCostSearch(prob)
+        self.searchType = FoodSearchProblem
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"

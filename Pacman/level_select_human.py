@@ -5,7 +5,6 @@ def open_level_selection():
     # Tạo cửa sổ mới cho việc chọn mức độ
     level_window = tk.Toplevel()
     level_window.title("Chọn mức độ")
-
     # Đặt vị trí cửa sổ mới giữa màn hình
     window_width = 300
     window_height = 200

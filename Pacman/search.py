@@ -93,7 +93,7 @@ def tinyMazeSearch(problem):
 def graphFindPath(problem, algorithm):
 
     algorithm.push([(problem.getStartState(), "", 0)])
-    visited_states = []
+    visited_states = set()
 
     while not algorithm.isEmpty():
         path = algorithm.pop()
@@ -109,7 +109,7 @@ def graphFindPath(problem, algorithm):
 
         else:
             if current_state not in visited_states:
-                visited_states.append(current_state)
+                visited_states.add(current_state)
 
                 for successor in problem.getSuccessors(current_state):
                     if successor[0] not in visited_states:
@@ -124,20 +124,6 @@ def graphFindPath(problem, algorithm):
 # We choose the Stack function which using the last-in-first-out logic for DFS.
 # Then we provide the stack algorithm and return to the graphFindPath method for finding the possible path.
 def depthFirstSearch(problem):
-    """
-    Search the deepest nodes in the search tree first.
-
-    Your search algorithm needs to return a list of actions that reaches the
-    goal. Make sure to implement a graph search algorithm.
-
-    To get started, you might want to try some of these simple commands to
-    understand the search problem that is being passed in:
-
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-    """
-    "*** YOUR CODE HERE ***"
     stack = util.Stack()
     return graphFindPath(problem, stack)
 
@@ -145,8 +131,6 @@ def depthFirstSearch(problem):
 # We choose the Queue function which using the first-in-first-out logic for DFS.
 # Then we provide the stack algorithm and return to the graphFindPath method for finding the possible path.
 def breadthFirstSearch(problem):
-    """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
     #util.raiseNotDefined()
     queue = util.Queue()
 
@@ -191,15 +175,8 @@ def nullHeuristic(state, problem=None):
     goal in the provided SearchProblem.  This heuristic is trivial.
     """
     return 0
-# The main algorithm of a search is based on uniformCostSearch + heuristic
-# This search is similar to uniformCostSearch, the main structure is the same, adding nullHeuristic in the push
-# as the count part. Later on, adding nullCost below the original cost and push it(thisis just let the result push of
-# problem.getCostOfActions(cost) + heuristic(successor[0], problem))
-def aStarSearch(problem, heuristic=nullHeuristic):
-    """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
 
-    "Search the node that has the lowest combined cost and heuristic first."
+def aStarSearch(problem, heuristic):
     visited_states = []
     algorithm = util.PriorityQueue()
     algorithm.push((problem.getStartState(), []), nullHeuristic(problem.getStartState(), problem))
