@@ -24,17 +24,19 @@ def exit_game():
 
 ###########################      SET UP ROOT          ###########################
 width_root = 850
-height_root = 500
+height_root = 550
 root = tk.Tk()
 root.title("PACMAN GAME")
 # Set size of root
 root.geometry(f"{width_root}x{height_root}")
+
 ###########################      END SET UP ROOT          ###########################
+
 
 
 ###########################      DEFINE FONT          ###########################
 Button_Font = ("PacFont", 15)
-Member_Font = ("BlockKie",15)
+Member_Font = ("BlockKie",10)
 ###########################      END DEFINE FONT          ###########################
 
 
@@ -55,20 +57,20 @@ for i, name in enumerate(["Pham Hoang Anh - 21110753", "Dang Hieu Anh - 21110751
 
 ###########################      END MEMBER IN GROUP          ###########################
 
-title_label = tk.Label(root, text="PACMAN GAME", font=("PacFont",20,"bold"))
-title_label.pack( pady=20)
+title_label = tk.Label(root, text="PACMAN GAME", font=("PacFont",35,"bold"))
+title_label.pack( pady=40)
 ###########################      DEFINE BUTTON          ###########################
 # Set the size of the buttons
-button_width = 200
-button_height = 100
+button_width = 12
+button_height = 3
 # Create the buttons
-player_button = Button(root, text="HUMAN PLAY", command=start_player_game, font=Button_Font, width=button_width, height=button_height)
-ai_button = Button(root, text="AI PLAY",bg='black',fg='white', command=start_ai_game, font=Button_Font, width=button_width, height=button_height)
-exit_button = Button(root, text="Exit", command=exit_game, font=Button_Font, width=button_width, height=button_height)
+player_button = tk.Button(root, text="HUMAN PLAY", command=start_player_game, font=Button_Font, width=button_width, height=button_height)
+ai_button = tk.Button(root, text="AI PLAY",bg='black',fg='white', command=start_ai_game, font=Button_Font, width=button_width, height=button_height)
+exit_button = tk.Button(root, text="Exit", command=exit_game, font=Button_Font, width=button_width, height=button_height)
 # Pack the buttons
-player_button.pack()
-ai_button.pack()
-exit_button.pack()
+player_button.pack(pady=10)
+ai_button.pack(pady=10)
+exit_button.pack(pady=10)
 ###########################      END DEFINE BUTTON          ###########################
 
 
