@@ -41,6 +41,7 @@ def open_level_selection():
     hard_button.pack(side=tk.LEFT, padx=10)
 
 
+
 def easyLevelforHuman():
     command = "python pacman.py -l easyMapHuman"
     subprocess.run(command, shell=True)
