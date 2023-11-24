@@ -100,7 +100,6 @@ def update_algorithmTextbox(algorithm_textbox, algorithm, value):
 
 def play(level, algorithm):
     level_string = level.lower() + 'MapAI'
-    GhostRules.setSPEED("medium")
     algorithm_string = algorithm + 'FoodSearchAgent'
     command = f"python pacman.py -l {level_string} -p {algorithm_string}"
     subprocess.run(command, shell=True)
