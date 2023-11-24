@@ -177,15 +177,6 @@ class GameState:
         return self.data.food.count()
 
     def getFood(self):
-        """
-        Returns a Grid of boolean food indicator variables.
-
-        Grids can be accessed via list notation, so to check
-        if there is food at (x,y), just call
-
-        currentFood = state.getFood()
-        if currentFood[x][y] == True: ...
-        """
         return self.data.food
 
     def getWalls(self):
@@ -382,7 +373,8 @@ class GhostRules:
     """
     These functions dictate how ghosts interact with their environment.
     """
-    GHOST_SPEED=1.0
+
+    GHOST_SPEED = 1.0
 
 
     def getLegalActions( state, ghostIndex ):
@@ -455,6 +447,9 @@ class GhostRules:
     def placeGhost(state, ghostState):
         ghostState.configuration = ghostState.start
     placeGhost = staticmethod( placeGhost )
+
+
+
 
 #############################
 # FRAMEWORK TO START A GAME #

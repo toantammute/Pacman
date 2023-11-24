@@ -67,6 +67,11 @@ def open_level_selection():
                               height=button_height, command=lambda: update_algorithmTextbox(algorithm_textbox,algorithm, "AStar"))
     astar_button.pack(side=tk.LEFT, pady=10, padx=10)
 
+    ucs_button = tk.Button(algorithm_frame, text="UCS", font=Button_Font, width=button_width,
+                             height=button_height,
+                             command=lambda: update_algorithmTextbox(algorithm_textbox, algorithm, "UCS"))
+    ucs_button.pack(side=tk.LEFT, pady=10, padx=10)
+
     # Tạo nút Play
     play_button = tk.Button(level_window, text="Play", font=Button_Font, width=button_width,
                             height=button_height, command=lambda: play(level.get(), algorithm.get()))
@@ -95,13 +100,10 @@ def update_algorithmTextbox(algorithm_textbox, algorithm, value):
 
 def play(level, algorithm):
     level_string = level.lower() + 'MapAI'
+    GhostRules.setSPEED("medium")
     algorithm_string = algorithm + 'FoodSearchAgent'
     command = f"python pacman.py -l {level_string} -p {algorithm_string}"
     subprocess.run(command, shell=True)
 
-def easyLevelAI(level, algorithm):
-    level_string =level.lower() +'MapAI'
-    algorithm_string = algorithm+'FoodSearchAgent'
-    command = f"python pacman.py -l {level_string} -p {algorithm_string}"
-    subprocess.run(command, shell=True)
+
 
