@@ -4,7 +4,6 @@ import subprocess
 import level_select_human
 import level_select_AI
 from PIL import Image, ImageTk, ImageFont
-from tkmacosx import Button
 ###########################      END IMPORT LIBRARY          ###########################
 
 
