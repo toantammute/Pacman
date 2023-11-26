@@ -9,6 +9,8 @@ def open_level_selection():
     # Đặt vị trí cửa sổ mới giữa màn hình
     window_width = 850
     window_height = 500
+    window_width = 1200
+    window_height = 500
     screen_width = level_window.winfo_screenwidth()
     screen_height = level_window.winfo_screenheight()
     x = int((screen_width / 2) - (window_width / 2))
@@ -72,6 +74,16 @@ def open_level_selection():
                              command=lambda: update_algorithmTextbox(algorithm_textbox, algorithm, "UCS"))
     ucs_button.pack(side=tk.LEFT, pady=10, padx=10)
 
+    minimax_button = tk.Button(algorithm_frame, text="MINIMAX", font=Button_Font, width=button_width,
+                             height=button_height,
+                             command=lambda: update_algorithmTextbox(algorithm_textbox, algorithm, "Minimax"))
+    minimax_button.pack(side=tk.LEFT, pady=10, padx=10)
+    alphabeta_button = tk.Button(algorithm_frame, text="ALPHABETA", font=Button_Font, width=button_width,
+                             height=button_height,
+                             command=lambda: update_algorithmTextbox(algorithm_textbox, algorithm, "AlphaBeta"))
+    alphabeta_button.pack(side=tk.LEFT, pady=10, padx=10)
+
+
     # Tạo nút Play
     play_button = tk.Button(level_window, text="Play", font=Button_Font, width=button_width,
                             height=button_height, command=lambda: play(level.get(), algorithm.get()))
@@ -105,4 +117,17 @@ def play(level, algorithm):
     subprocess.run(command, shell=True)
 
 
+def play(level, algorithm):
+    if algorithm == 'Minimax' or algorithm == 'AlphaBeta':
+        level_string = level.lower() + 'MapHuman'
+        algorithm_string = algorithm + 'Agent'
+        command = f"python pacman.py -l {level_string} -p {algorithm_string} -a depth=0"
+        subprocess.run(command, shell=True)
+    else:
+        level_string = level.lower() + 'MapAI'
+        algorithm_string = algorithm + 'FoodSearchAgent'
+        command = f"python pacman.py -l {level_string} -p {algorithm_string}"
+        subprocess.run(command, shell=True)
+
+    
 

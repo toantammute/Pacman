@@ -37,9 +37,14 @@ Good luck and happy searching!
 from game import Directions
 from game import Agent
 from game import Actions
+from tkinter import *
 import util
 import time
 import search
+
+
+
+
 
 
 class GoWestAgent(Agent):
@@ -523,6 +528,7 @@ def foodHeuristic(state, problem):
 
     # Return max food distance as heuristic
     print("@ " , distanceList)
+    
     '''
     max(distanceList)+print(randint(1,3))
     sum(distanceList)
